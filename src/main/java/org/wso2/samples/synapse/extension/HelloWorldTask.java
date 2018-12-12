@@ -4,7 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.synapse.ManagedLifecycle;
 import org.apache.synapse.core.SynapseEnvironment;
-import org.apache.synapse.startup.Task;
+import org.apache.synapse.task.Task;
 
 
 public class HelloWorldTask implements Task, ManagedLifecycle {
@@ -22,20 +22,14 @@ public class HelloWorldTask implements Task, ManagedLifecycle {
 		
 		log.info("myProp: " + this.myProp);
 	}
-	
-	public String getMyPrope() {
-		return myProp;
-	}
-		 
-	public void setMyProp(String myProp) {
-		this.myProp = myProp;
-	}
-	
+		
 	public void destroy() {
+		log.info("HelloWorldTask:destroy");
 	}
 	 
 	public void init(SynapseEnvironment synapseEnvironment) {
 		this.synapseEnvironment = synapseEnvironment;
+		log.info("HelloWorldTask:init");
 	}
 	 
 	public SynapseEnvironment getSynapseEnvironment() {
@@ -45,4 +39,13 @@ public class HelloWorldTask implements Task, ManagedLifecycle {
 	public void setSynapseEnvironment(SynapseEnvironment synapseEnvironment) {
 		this.synapseEnvironment = synapseEnvironment;
 	}
+
+	public String getMyPrope() {
+		return myProp;
+	}
+		 
+	public void setMyProp(String myProp) {
+		this.myProp = myProp;
+	}
+
 }
